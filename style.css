@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+::selection {
+  color: #fff;
+  background: #0066cc;
+}
+
+body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.wrapper {
+  max-width: 1200px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Added spacing between images */
+}
+
+.gallery .image {
+  width: calc(100% / 3 - 10px); /* Adjusted for better spacing */
+  overflow: hidden;
+  border-radius: 12px; /* Added rounded corners */
+  position: relative;
+}
+
+.gallery .image img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+}
+
+.gallery .image:hover img {
+  transform: scale(1.1) rotate(2deg); /* Added subtle rotation */
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.preview-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #f0f4f7; /* Changed background to a lighter shade */
+  max-width: 600px;
+  width: 90%;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 15px; /* Increased border radius */
+  padding: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.preview-box.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.preview-box .details {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  justify-content: space-between;
+}
+
+.preview-box .details .title {
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.details .title p {
+  margin: 0 8px;
+}
+
+.details .icon {
+  color: #ff5a5f; /* Changed close icon color */
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.details .icon:hover {
+  transform: scale(1.2);
+}
+
+.preview-box .image-box {
+  position: relative;
+  margin-top: 10px;
+}
+
+.image-box .slide {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 35px;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #007bff; /* Changed button background */
+  border-radius: 50%; /* Made buttons circular */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.slide.prev {
+  left: -20px;
+}
+
+.slide.next {
+  right: -20px;
+}
+
+.image-box .slide:hover {
+  background: #0056b3; /* Darker shade on hover */
+  transform: scale(1.1);
+}
+
+.image-box img {
+  width: 100%;
+  border-radius: 10px; /* Match preview box style */
+}
+
+.shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: none;
+  background: rgba(0, 0, 0, 0.6); /* Darkened shadow for contrast */
+}
+
+@media (max-width: 1000px) {
+  .gallery .image {
+    width: calc(100% / 2 - 10px); /* Adjusted for medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery .image {
+    width: 100%;
+  }
+  .gallery .image img {
+    border-radius: 8px;
+  }
+}
